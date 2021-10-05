@@ -16,7 +16,7 @@ import java.io.IOException;
 import static com.github.reflectionassert.ReflectionAssertions.assertReflectiveThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DbTests {
+public class Tests {
 
     private static MyBatisDbHelper dbHelper;
     private static ProductsMapper productsMapper;
@@ -45,30 +45,9 @@ public class DbTests {
     void testDeleteProductById() {
         productsMapper.deleteByPrimaryKey(5L);
 
-    Products productDelete = productsMapper.selectByPrimaryKey(5L);
+        Products productDelete = productsMapper.selectByPrimaryKey(5L);
         System.out.println(productDelete);
 
         assertReflectiveThat(productDelete).isEqualTo(null);
-}
-
-
-  /*  @Test
-    @DisplayName("Создание нового продукта")
-    @Order(2)
-    void testCreateNewProduct() throws IOException {
-        productDto = ProductDto.builder()
-                .title("LapTop")
-                .categoryTitle(CategoryDto.ELECTRONIC.getTitle())
-                .price(200000)
-                .build();
-
-        Response<ProductDto> responsePostProduct = service
-                .createProduct(productDto)
-                .execute();
-
-        assertReflectiveThat(responsePostProduct.body().getCategoryTitle()).isEqualTo(productDto.getCategoryTitle());
-        assertReflectiveThat(responsePostProduct.body().getTitle()).isEqualTo(productDto.getTitle());
-        assertReflectiveThat(responsePostProduct.body().getPrice()).isEqualTo(productDto.getPrice());
-    }*/
-
+    }
 }
